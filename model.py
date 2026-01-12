@@ -3,11 +3,29 @@ import torch.nn as nn
 
 class SimpleCNN(nn.Module):
     """
-    A lightweight convolutional neural network for image classification.
-    Uses adaptive pooling so it works with any input image size.
+    A lightweight convolutional neural network (CNN) for image classification.
+
+    The network consists of three convolutional blocks (Conv + ReLU + MaxPool),
+    followed by adaptive average pooling and a small fully-connected classifier.
+
+    Adaptive pooling is used so the model does not depend on a fixed input
+    resolution (it will work with any reasonably sized square image).
     """
 
-    def __init__(self, n_classes: int):
+    def __init__(self, n_classes: int) -> None:
+        """
+        Initialize the CNN architecture.
+
+        Parameters
+        ----------
+        n_classes : int
+            Number of target classes for classification (size of the output layer).
+
+        Returns
+        -------
+        None
+            This constructor initializes the model modules.
+        """
         super().__init__()
 
         self.features = nn.Sequential(
@@ -24,7 +42,7 @@ class SimpleCNN(nn.Module):
             nn.MaxPool2d(2),
         )
 
-        # Adaptive pooling removes the dependency on fixed image size
+        # Removes the dependency on a fixed spatial size (e.g. 128x128)
         self.pool = nn.AdaptiveAvgPool2d((1, 1))
 
         self.classifier = nn.Sequential(
@@ -36,6 +54,19 @@ class SimpleCNN(nn.Module):
         )
 
     def forward(self, x):
+        """
+        Run a forward pass of the model.
+
+        Parameters
+        ----------
+        x : torch.Tensor
+            Input batch of images with shape (batch_size, 3, H, W).
+
+        Returns
+        -------
+        torch.Tensor
+            Logits tensor with shape (batch_size, n_classes).
+        """
         x = self.features(x)
         x = self.pool(x)
         x = self.classifier(x)
