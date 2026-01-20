@@ -88,9 +88,4 @@ These outputs allow both quantitative and visual evaluation of model performance
 
 ---
 
-## Purpose
 
-This project is designed as a clean, modular example of an image
-classification workflow in PyTorch. It can be used for coursework,
-experimentation, or as a portfolio project demonstrating good machine
-learning engineering practices.
