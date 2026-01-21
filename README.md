@@ -2,11 +2,10 @@
 
 This project implements an end-to-end image classification pipeline using a
 convolutional neural network (CNN) in PyTorch. It covers dataset loading,
-image preprocessing, model training, evaluation, and result visualization
-in a modular and reproducible way.
+image preprocessing, model training, evaluation, and result visualization.
 
 The codebase is structured to separate data handling, model definition, and
-training logic, following good machine learning engineering practices.
+training logic, following machine learning engineering practices.
 
 ---
 
@@ -84,7 +83,7 @@ After training finishes, the output directory will contain:
 - `figures/01_train_class_counts.png` – Class distribution of the training set  
 - `figures/02_confusion_matrix.png` – Confusion matrix on the test set  
 
-These outputs allow both quantitative and visual evaluation of model performance.
+
 
 ---
 
